@@ -1,0 +1,122 @@
+@import "../node_modules/bootstrap/scss/mixins/banner";
+@include bsBanner("");
+
+
+// scss-docs-start import-stack
+// Configuration
+$primary: #392cc4;
+
+$main-btn-1: #f9dde8;
+$main-btn-2: #ee87b3;
+
+@import "../node_modules/bootstrap/scss/functions";
+
+$enable-grid-classes: false;
+$enable-cssgrid: true;
+
+@import "../node_modules/bootstrap/scss/variables";
+@import "../node_modules/bootstrap/scss/variables-dark";
+
+$primary-subtle-20: tint-color($primary, 20%);
+$primary-subtle-50: tint-color($primary, 50%);
+$primary-subtle-65: tint-color($primary, 65%);
+$primary-subtle-80: tint-color($primary, 80%);
+
+$theme-colors: map-merge(
+  $theme-colors,
+  (
+    "primary": $primary,
+    "primary-subtle-20": $primary-subtle-20,
+    "primary-subtle-50": $primary-subtle-50,
+    "primary-subtle-65": $primary-subtle-65,
+    "primary-subtle-80": $primary-subtle-80,
+  )
+);
+
+@import "../node_modules/bootstrap/scss/maps";
+@import "../node_modules/bootstrap/scss/mixins";
+@import "../node_modules/bootstrap/scss/utilities";
+
+// Layout & components
+@import "../node_modules/bootstrap/scss/root";
+@import "../node_modules/bootstrap/scss/reboot";
+@import "../node_modules/bootstrap/scss/type";
+@import "../node_modules/bootstrap/scss/images";
+@import "../node_modules/bootstrap/scss/containers";
+@import "../node_modules/bootstrap/scss/grid";
+@import "../node_modules/bootstrap/scss/tables";
+@import "../node_modules/bootstrap/scss/forms";
+@import "../node_modules/bootstrap/scss/buttons";
+@import "../node_modules/bootstrap/scss/transitions";
+@import "../node_modules/bootstrap/scss/dropdown";
+@import "../node_modules/bootstrap/scss/button-group";
+@import "../node_modules/bootstrap/scss/nav";
+@import "../node_modules/bootstrap/scss/navbar";
+@import "../node_modules/bootstrap/scss/card";
+@import "../node_modules/bootstrap/scss/accordion";
+@import "../node_modules/bootstrap/scss/breadcrumb";
+@import "../node_modules/bootstrap/scss/pagination";
+@import "../node_modules/bootstrap/scss/badge";
+@import "../node_modules/bootstrap/scss/alert";
+@import "../node_modules/bootstrap/scss/progress";
+@import "../node_modules/bootstrap/scss/list-group";
+@import "../node_modules/bootstrap/scss/close";
+@import "../node_modules/bootstrap/scss/toasts";
+@import "../node_modules/bootstrap/scss/modal";
+@import "../node_modules/bootstrap/scss/tooltip";
+@import "../node_modules/bootstrap/scss/popover";
+@import "../node_modules/bootstrap/scss/carousel";
+@import "../node_modules/bootstrap/scss/spinners";
+@import "../node_modules/bootstrap/scss/offcanvas";
+@import "../node_modules/bootstrap/scss/placeholders";
+
+// Helpers
+@import "../node_modules/bootstrap/scss/helpers";
+
+// Utilities
+@import "../node_modules/bootstrap/scss/utilities/api";
+// scss-docs-end import-stack
+
+*{
+    box-sizing: border-box;
+}
+
+.main-menu {
+    background: linear-gradient(
+        135deg,
+        darken($primary-subtle-20, 30%) 0%,
+        darken($primary-subtle-65, 30%) 50%,
+        darken($primary-subtle-80, 30%) 100%,
+    );
+    background-size: 200% 100%;
+    background-position: 0% 50%;
+    animation: moveGradient 12s linear infinite;
+}
+@keyframes moveGradient {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.btn-1{
+  background-color: $main-btn-1 !important;
+  &:hover{
+    background-color: darken($main-btn-1, 10%) !important;
+  }
+}
+.btn-2{
+  background-color: $main-btn-2 !important;
+  &:hover{
+    background-color: darken($main-btn-2, 10%) !important;
+  }
+}
+
+.btn-1, .btn-2{
+  width: 20rem;
+  height: 20rem;
+  font-size: 1.5rem;
+}
+
+img{
+  text-align: center;
+}

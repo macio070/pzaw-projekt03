@@ -1,0 +1,58 @@
+<%- include('./partials/head_partial.ejs') %>
+<main class="container h-100 d-flex flex-column align-items-center">
+  <a href="javascript:window.history.back()" class="btn btn-primary position-absolute m-3" style="width: 5rem; height: 2.5rem; left: 0">Back</a>
+  <h1 class="m-4"><%= title %></h1>
+
+  <div
+    class="d-flex fs-4 flex-column justify-content-center align-items-center"
+  >
+    <img
+      src="<%= game.image %>"
+      alt="<%= game.title %>"
+      style="
+        width: 300px;
+        height: 200px;
+        object-fit: contain;
+        object-position: center;
+        display: block;
+      "
+      class="img img-fluid mb-3"
+    />
+    <ul class="list-group mb-3">
+      <li class="list-group-item">
+        <strong>Genre:</strong>
+        <% game.genre.forEach(genre => { %>
+            <% if(genre != game.genre[game.genre.length-1]) { %> 
+                <%= genre %>,
+            <% } else { %>
+                <%= genre %>
+            <% } %>
+        <% }) %>
+
+      </li>
+      <li class="list-group-item">
+        <strong>Platform:</strong>
+                <% game.platform.forEach(platform => { %>
+            <% if(platform != game.platform[game.platform.length-1]) { %> 
+                <%= platform %>,
+            <% } else { %>
+                <%= platform %>
+            <% } %>
+        <% }) %>
+      </li>
+      <li class="list-group-item">
+        <strong>Release Date:</strong> <%= game.release_date.toLocaleDateString() %>
+      </li>
+      <li class="list-group-item">
+        <strong>Developer:</strong> <%= game.developer %>
+      </li>
+      <li class="list-group-item">
+        <strong>Description:</strong> <%= game.description %>
+      </li>
+      <li class="list-group-item">
+        <strong>More info:</strong> <a href="<%= game.link %>" target="_blank" rel="noopener noreferrer"><%= game.link %></a>
+      </li>
+    </ul>
+  </div>
+</main>
+<%- include('./partials/foot_partial.ejs') %>
