@@ -8,6 +8,7 @@ db.exec(
     `
 CREATE TABLE IF NOT EXISTS game_data(
     game_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    game_title VARCHAR(50),
     genre_id INTEGER,
     platform_id INTEGER,
     release_date DATE,
