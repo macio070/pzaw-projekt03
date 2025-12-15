@@ -10,12 +10,24 @@
       <input type="text" class="form-control" id="title" name="title" required />
     </div>
     <div class="mb-3 w-50">
-      <label for="genre" class="form-label">Genre (comma separated)*</label>
-      <input type="text" class="form-control" id="genre" name="genre" required />
+      <label for="genre" class="form-label">Genres (select all that apply)*</label>
+      <!-- <input type="text" class="form-control" id="genre" name="genre" required /> -->
+       <% genres.forEach(genre => { %>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" name="<%= genre %>" id="<%= genre %>">
+          <label for="<%= genre %>" class="form-check-label"><%= genre %></label>
+        </div>
+       <% }) %>
     </div>
     <div class="mb-3 w-50">
-      <label for="platform" class="form-label">Platform (comma separated)*</label>
-      <input type="text" class="form-control" id="platform" name="platform" required />
+      <label for="platform" class="form-label">Platform (select all that apply)*</label>
+      <!-- <input type="text" class="form-control" id="platform" name="platform" required /> -->
+       <% platforms.forEach(platform => { %>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" name="<%= platform %>" id="<%= platform %>">
+          <label for="<%= platform %>" class="form-check-label"><%= platform %></label>
+        </div>
+       <% }) %>
     </div>
     <div class="mb-3 w-50">
       <label for="release_date" class="form-label">Release Date*</label>

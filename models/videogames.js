@@ -1,7 +1,8 @@
+import { title } from "node:process";
 import { DatabaseSync } from "node:sqlite";
 
 const db_path = "./games.db";
-const db = new DatabaseSync(db_path);
+export const db = new DatabaseSync(db_path);
 
 console.log("tworzenie tabel");
 // db.exec(
@@ -115,20 +116,65 @@ export const games = {
 
 
 export const getGameTitles = () => {
-    return Object.keys(games);
+    let titles = [];
+    const query = db.prepare("SELECT game_title FROM game_data").all();
+    query.forEach(title => {
+        titles.push(title.game_title);
+    });
+    return titles;
 }
 export const getGameData = (title) => {
-    return {title: title, ...games[title]};
+    const data = db.prepare(`SELECT * FROM game_data WHERE game_title=?`).get(title);
+    return data
 }
 
 export const getAllGameImages = () => {
     const images = [];
     const games = getGameTitles();
     games.forEach(game => {
-        images.push({title: getGameData(game).title, path: getGameImage(game)});
+        images.push({title: getGameData(game).game_title, path: getGameImage(game)});
     });
     return images;
 }
 export const getGameImage = (title) => {
-    return games[title]?.image || null;
+    const image = db.prepare(`SELECT image from game_data WHERE game_title = ?`).get(title).image;
+    return image;
+}
+
+export const getGameGenres = (title) => {
+    const genres = [];
+    const gameId = db.prepare("SELECT game_id FROM game_data WHERE game_title = ?").get(title);
+    const genres_query = db.prepare("SELECT genre_id FROM games_genres WHERE game_id = ?").all(gameId.game_id);
+    genres_query.forEach(genre => {
+        genres.push(db.prepare(`SELECT genre_name FROM genres WHERE genre_id = ?`).get(genre.genre_id).genre_name)
+    });
+    return genres
+}
+
+export const getGamePlatforms = (title) => {
+    const platforms = [];
+    const gameId = db.prepare("SELECT game_id FROM game_data WHERE game_title = ?").get(title);
+    const platforms_query = db.prepare("SELECT platform_id FROM games_platforms WHERE game_id = ?").all(gameId.game_id);
+    platforms_query.forEach(platform => {
+        platforms.push(db.prepare(`SELECT platform_name FROM platforms WHERE platform_id = ?`).get(platform.platform_id).platform_name)
+    });
+    return platforms
+}
+
+export const getAllGenres = () =>{
+    const genres = [];
+    const query = db.prepare("SELECT genre_name FROM genres").all();
+    query.forEach(genre => {
+        genres.push(genre.genre_name)
+    });
+    return genres
+}
+
+export const getAllPlatforms = () =>{
+    const platforms = [];
+    const query = db.prepare("SELECT platform_name FROM platforms").all();
+    query.forEach(platform => {
+        platforms.push(platform.platform_name)
+    });
+    return platforms
 }
