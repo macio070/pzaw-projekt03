@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS "game_data" (
 	"game_title"	VARCHAR(50),
 	"release_date"	DATE,
 	"developer"	VARCHAR(50),
-	"description"	VARCHAR(512),
+	"description"	VARCHAR(2000),
 	"link"	VARCHAR(512),
 	"image"	VARCHAR(512),
 	PRIMARY KEY("game_id" AUTOINCREMENT)

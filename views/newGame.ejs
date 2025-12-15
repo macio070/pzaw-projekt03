@@ -2,7 +2,7 @@
 
 <main class="container h-100 d-flex flex-column align-items-center">
   <a
-    href="./"
+    href="/games/"
     class="btn btn-primary position-absolute m-3"
     style="width: 5rem; height: 2.5rem; left: 0"
     >Back</a
@@ -82,7 +82,7 @@
     </div>
     <div class="mb-3 w-50">
       <label for="description" class="form-label">Description*</label>
-      <textarea rows="4" class="form-control" id="description" name="description"><%= form.description ? form.description : '' %></textarea>
+      <textarea rows="4" maxlength="2000" class="form-control" id="description" name="description"><%= form.description ? form.description : '' %></textarea>
     </div>
     <div class="mb-3 w-50">
       <label for="link" class="form-label">Game URL</label>
