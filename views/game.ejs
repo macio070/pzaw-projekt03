@@ -51,7 +51,11 @@
         <strong>Description:</strong> <%= gameData.description %>
       </li>
       <li class="list-group-item">
-        <strong>More info:</strong> <a href="<%= gameData.link %>" target="_blank" rel="noopener noreferrer"><%= gameData.link %></a>
+        <strong>More info:</strong> <% if (gameData.link !== null) { %>
+         <a href="<%= gameData.link %>" target="_blank" rel="noopener noreferrer"><%= gameData.link %></a>
+        <% } else { %>
+          <span>N/A</span>
+        <% } %> 
       </li>
     </ul>
   </div>

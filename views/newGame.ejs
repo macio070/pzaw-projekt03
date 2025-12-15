@@ -1,53 +1,110 @@
 <%- include('./partials/head_partial.ejs') %>
 
 <main class="container h-100 d-flex flex-column align-items-center">
-  <a href="./" class="btn btn-primary position-absolute m-3" style="width: 5rem; height: 2.5rem; left: 0">Back</a>
+  <a
+    href="./"
+    class="btn btn-primary position-absolute m-3"
+    style="width: 5rem; height: 2.5rem; left: 0"
+    >Back</a
+  >
   <h1 class="m-4"><%= title %></h1>
 
-  <form action="/games/new" method="POST" class="d-flex flex-column align-items-center w-100">
+  <form
+    action="/games/new"
+    method="POST"
+    class="d-flex flex-column align-items-center w-100"
+  >
+    <% if (typeof errors !== 'undefined' && errors.length) { %>
+    <ul class="errors">
+      <% errors.forEach(error => { %>
+      <li><%= error %></li>
+      <% }) %>
+    </ul>
+    <% } %>
+
     <div class="mb-3 w-50">
       <label for="title" class="form-label">Title*</label>
-      <input type="text" class="form-control" id="title" name="title" required />
+      <input
+        type="text"
+        class="form-control"
+        id="title"
+        name="title"
+        value="<%= form && form.title ? form.title : '' %>"
+      />
     </div>
     <div class="mb-3 w-50">
-      <label for="genre" class="form-label">Genres (select all that apply)*</label>
-      <!-- <input type="text" class="form-control" id="genre" name="genre" required /> -->
-       <% genres.forEach(genre => { %>
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" name="<%= genre %>" id="<%= genre %>">
-          <label for="<%= genre %>" class="form-check-label"><%= genre %></label>
-        </div>
-       <% }) %>
+      <label for="genre" class="form-label"
+        >Genres (select all that apply)*</label
+      >
+      <!-- <input type="text" class="form-control" id="genre" name="genre"  /> -->
+      <% genres.forEach(genre => { %>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="<%= genre %>"
+        id="<%= genre %>" <%= form && form[genre] ? 'checked' : '' %>>
+        <label for="<%= genre %>" class="form-check-label"><%= genre %></label>
+      </div>
+      <% }) %>
     </div>
     <div class="mb-3 w-50">
-      <label for="platform" class="form-label">Platform (select all that apply)*</label>
-      <!-- <input type="text" class="form-control" id="platform" name="platform" required /> -->
-       <% platforms.forEach(platform => { %>
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" name="<%= platform %>" id="<%= platform %>">
-          <label for="<%= platform %>" class="form-check-label"><%= platform %></label>
-        </div>
-       <% }) %>
+      <label for="platform" class="form-label"
+        >Platform (select all that apply)*</label
+      >
+      <!-- <input type="text" class="form-control" id="platform" name="platform"  /> -->
+      <% platforms.forEach(platform => { %>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="<%= platform %>"
+        id="<%= platform %>" <%= form && form[platform] ? 'checked' : '' %>>
+        <label for="<%= platform %>" class="form-check-label"
+          ><%= platform %></label
+        >
+      </div>
+      <% }) %>
     </div>
     <div class="mb-3 w-50">
       <label for="release_date" class="form-label">Release Date*</label>
-      <input type="date" class="form-control" id="release_date" name="release_date" required />
+      <input
+        type="date"
+        class="form-control"
+        id="release_date"
+        name="release_date"
+        value="<%= form && form.release_date ? form.release_date : '' %>"
+      />
     </div>
     <div class="mb-3 w-50">
       <label for="developer" class="form-label">Developer*</label>
-      <input type="text" class="form-control" id="developer" name="developer" required />
+      <input
+        type="text"
+        class="form-control"
+        id="developer"
+        name="developer"
+        value="<%= form && form.developer ? form.developer : '' %>"
+      />
     </div>
     <div class="mb-3 w-50">
       <label for="description" class="form-label">Description*</label>
-      <textarea type="text" class="form-control" id="description" name="description" required></textarea>
+      <textarea class="form-control" id="description" name="description">
+<%= form && form.description ? form.description : '' %></textarea
+      >
     </div>
     <div class="mb-3 w-50">
       <label for="link" class="form-label">Game URL</label>
-      <input type="url" class="form-control" id="link" name="link" />
+      <input
+        type="url"
+        class="form-control"
+        id="link"
+        name="link"
+        value="<%= form && form.link ? form.link : '' %>"
+      />
     </div>
     <div class="mb-3 w-50">
       <label for="logo" class="form-label">Logo URL</label>
-      <input type="url" class="form-control" id="logo" name="logo" />
+      <input
+        type="url"
+        class="form-control"
+        id="logo"
+        name="logo"
+        value="<%= form && form.logo ? form.logo : '' %>"
+      />
     </div>
     <button type="submit" class="btn btn-primary">Add Game</button>
   </form>

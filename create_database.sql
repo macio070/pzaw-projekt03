@@ -13,14 +13,14 @@ CREATE TABLE IF NOT EXISTS "games_genres" (
 	"game_id"	INTEGER,
 	"genre_id"	INTEGER,
 	PRIMARY KEY("game_id","genre_id"),
-	FOREIGN KEY("game_id") REFERENCES "games"("game_id"),
+	FOREIGN KEY("game_id") REFERENCES "game_data"("game_id"),
 	FOREIGN KEY("genre_id") REFERENCES "genres"("genre_id")
 );
 CREATE TABLE IF NOT EXISTS "games_platforms" (
 	"game_id"	INTEGER,
 	"platform_id"	INTEGER,
 	PRIMARY KEY("game_id","platform_id"),
-	FOREIGN KEY("game_id") REFERENCES "games"("game_id"),
+	FOREIGN KEY("game_id") REFERENCES "game_data"("game_id"),
 	FOREIGN KEY("platform_id") REFERENCES "platforms"("platform_id")
 );
 CREATE TABLE IF NOT EXISTS "genres" (
@@ -39,27 +39,23 @@ INSERT INTO "game_data" ("game_id","game_title","release_date","developer","desc
  (4,'Counter-Strike 2','2023-09-27','Valve Corporation','The latest installment in the classic tactical shooter seies. It relies on team strategy and precise shooting skills.','https://counter-strike.net/','../assets/cs2_logo.svg'),
  (5,'Cyberpunk 2077','2020-12-10','CD Projekt Red','An open-world RPG set in a dystopian future, focusing on narrative and player choice.','https://www.cyberpunk.net/','../assets/cyberpunk2077_logo.png'),
  (6,'GTA V','2013-09-17','Rockstar Games','An open-world action-adventure game set in the fictional state of San Andreas.','https://www.rockstargames.com/gta-v/','../assets/gta5_logo.png'),
- (7,'Overwatch 2','2022-10-04','Blizzard Entertainment','A team-based multiplayer shooter with a focus on hero abilities and teamwork.','https://playoverwatch.com/','../assets/overwatch2_logo.svg'),
- (8,'test','2001-09-11','nug1','dsiadbkasbd','',''),
- (9,'test','2001-09-11','nug1','dsiadbkasbd','',''),
- (10,'test','2001-09-11','nug1','dsiadbkasbd','',''),
- (11,'test','2001-09-11','nug1','dsiadbkasbd','',''),
- (12,'test','2001-09-11','nug1','dsiadbkasbd','',''),
- (13,'test','2001-09-11','nug1','dsiadbkasbd','',''),
- (14,'test','2001-09-11','nug1','dsiadbkasbd','',''),
- (15,'test','2001-09-11','nug1','dsiadbkasbd','',''),
- (16,'test','2001-09-11','nug1','dsiadbkasbd','',''),
- (17,'test','2001-09-11','nug1','dsiadbkasbd','',''),
- (18,'test','2001-09-11','nug1','dsiadbkasbd','',''),
- (19,'test','2001-09-11','nug1','dsiadbkasbd','',''),
- (20,'test','2001-09-11','nug1','dsiadbkasbd','',''),
- (21,'test','2001-09-11','nug1','dsiadbkasbd','',''),
- (22,'test','2001-09-11','nug1','dsiadbkasbd','',''),
- (23,'test','2001-09-11','nug1','dsiadbkasbd','',''),
- (24,'test','2001-09-11','nug1','dsiadbkasbd','',''),
- (25,'test','2001-09-11','nug1','dsiadbkasbd','',''),
- (26,'test','2001-09-11','nug1','dsiadbkasbd','','');
-INSERT INTO "games_genres" ("game_id","genre_id") VALUES (1,1),
+ (7,'Overwatch 2','2022-10-04','Blizzard Entertainment','A team-based multiplayer shooter with a focus on hero abilities and teamwork.','https://playoverwatch.com/','../assets/overwatch2_logo.svg');
+INSERT INTO "genres" ("genre_id","genre_name") VALUES 
+ (1,'FPS'),
+ (2,'RPG'),
+ (3,'Sandbox'),
+ (4,'Survival'),
+ (5,'Action'),
+ (6,'Adventure');
+INSERT INTO "platforms" ("platform_id","platform_name") VALUES 
+ (1,'PC'),
+ (2,'Consoles'),
+ (3,'Switch'),
+ (4,'Xbox'),
+ (5,'Playstation'),
+ (6,'Mobile');
+INSERT INTO "games_genres" ("game_id","genre_id") VALUES 
+ (1,1),
  (2,2),
  (3,3),
  (3,4),
@@ -69,7 +65,8 @@ INSERT INTO "games_genres" ("game_id","genre_id") VALUES (1,1),
  (6,5),
  (6,6),
  (7,1);
-INSERT INTO "games_platforms" ("game_id","platform_id") VALUES (1,1),
+INSERT INTO "games_platforms" ("game_id","platform_id") VALUES 
+ (1,1),
  (1,2),
  (2,1),
  (2,2),
@@ -85,16 +82,4 @@ INSERT INTO "games_platforms" ("game_id","platform_id") VALUES (1,1),
  (6,2),
  (7,1),
  (7,2);
-INSERT INTO "genres" ("genre_id","genre_name") VALUES (1,'FPS'),
- (2,'RPG'),
- (3,'Sandbox'),
- (4,'Survival'),
- (5,'Action'),
- (6,'Adventure');
-INSERT INTO "platforms" ("platform_id","platform_name") VALUES (1,'PC'),
- (2,'Consoles'),
- (3,'Switch'),
- (4,'Xbox'),
- (5,'Playstation'),
- (6,'Mobile');
 COMMIT;
